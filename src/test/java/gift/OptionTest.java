@@ -1,25 +1,21 @@
 package gift;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
 
+import gift.DTO.Category;
 import gift.DTO.Option;
+import gift.DTO.Product;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class OptionTest {
 
-  @Mock
-  private Option option;
-
   @Test
-  void subtractTest() throws IllegalAccessException {
-    Option option = mock(Option.class);
-    doThrow(IllegalAccessException.class).when(option).subtract(3);
+  void subtractTest() {
+    Option option = new Option(1L, "옵션1", 2,
+      new Product(1L, "product1", 300, "fadsklf",
+        new Category(1L, "교환권", "#6c95d1", "image_url", "교환권 카테고리")));
 
     assertThrows(IllegalAccessException.class, () -> {
       option.subtract(3);
